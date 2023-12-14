@@ -1,0 +1,140 @@
+
+.settings {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #333339;
+  box-shadow: 5px 5px 5px 5px #222;
+  border-radius: 1mm;
+  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 1rem;
+  transition: ease-in-out .25s;
+  width: 50vw; 
+  height: 70vh; 
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.settings .enabled {
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: var(--enabled-color);
+}
+.settings .enabled:hover {
+    background-color: var(--enabled-color);
+}
+.multiple-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.multiple-item > span {
+    margin-right: 1rem;
+}
+.multiple-item > input {
+    width: 100%;
+}
+.multiple-item > button {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    background-color: #333;
+    color: #ccc;
+    border: none;
+    border-radius: 1mm;
+    width: 40px;
+    height: 40px;
+    padding: 0 0 0 0;
+    transition: ease-in-out .25s;
+}
+.multiple-item > button:hover {
+    background-color: #333;
+}
+.multiple-item > button:disabled {
+    background-color: #333;
+    color: #444;
+}
+
+.multiple-item > button:disabled:hover {
+    background-color: #333;
+    color: #aaa;
+}
+.settings li {
+    list-style-type: none;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 1mm;
+    background-color: #222;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: ease-in-out .5s;
+}
+
+.settings li:hover {
+    background-color: #444;
+    box-shadow: 1px 1px 1px 1px #333;
+}
+
+.settings li:active {
+    background-color: #666;
+    box-shadow: 5px 5px 5px 5px #222;
+}
+
+.settings li:disabled {
+    background-color: #444;
+    box-shadow: 5px 5px 5px 5px #222;
+}
+
+.settings li:disabled:hover {
+    background-color: #444;
+    box-shadow: 5px 5px 5px 5px #222;
+}
+
+.settings li:disabled:active {
+    background-color: #444;
+    box-shadow: 5px 5px 5px 5px #222;
+}
+
+.settings li:disabled:focus {
+    background-color: #444;
+    box-shadow: 5px 5px 5px 5px #222;
+}
+
+.settings li:focus {
+    background-color: #444;
+    box-shadow: 5px 5px 5px 5px #222;
+}
+
+.settings li:focus:hover {
+    background-color: #444;
+    box-shadow: 5px 5px 5px 5px #222;
+}
+
+.settings li:focus:active {
+    background-color: #444;
+    box-shadow: 5px 5px 5px 5px #222;
+}
+
+.settings li:focus:disabled {
+    background-color: #444;
+    box-shadow: 5px 5px 5px 5px #222;
+}
+
+.settings li:focus:disabled:hover {
+    background-color: #444;
+    box-shadow: 5px 5px 5px 5px #222;
+}
+
+.settings li:focus:disabled:active {
+    background-color: #444;
+    box-shadow: 5px 5px 5px 5px #222;
+}
+
+.settings li:focus:disabled:focus {
+    background-color: #444;
+    box-shadow: 5px 5px 5px 5px #222;
+}
