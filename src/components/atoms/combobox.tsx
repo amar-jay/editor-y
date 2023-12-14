@@ -18,8 +18,11 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
  
-
-export function Combobox({fonts, setFont, currentFont}) {
+interface Item {
+  label: string;
+  value: string;
+}
+export function Combobox({fonts, setFont, currentFont}:{fonts: Item[]; setFont: any, currentFont: string}) {
   const [open, setOpen] = React.useState(false)
  
   return (
@@ -32,7 +35,7 @@ export function Combobox({fonts, setFont, currentFont}) {
           className="w-[200px] justify-between"
         >
           {currentFont
-            ? fonts.find((framework) => framework.value === currentFont)?.label
+            ? fonts.find((font:Item) => font.value === currentFont)?.label
             : "Select font..."}
           <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -40,22 +43,22 @@ export function Combobox({fonts, setFont, currentFont}) {
       <PopoverContent className="w-[200px] p-0">
         <Command>
           <CommandInput placeholder="Search font..." className="h-9" />
-          <CommandEmpty>No framework found.</CommandEmpty>
+          <CommandEmpty>No fonts found.</CommandEmpty>
           <CommandGroup>
-            {fonts.map((framework) => (
+            {fonts.map((font) => (
               <CommandItem
-                key={framework.value}
-                value={framework.value}
+                key={font.value}
+                value={font.value}
                 onSelect={(currentValue) => {
                   setFont(currentValue === currentFont ? "" : currentValue)
                   setOpen(false)
                 }}
               >
-                {framework.label}
+                {font.label}
                 <CheckIcon
                   className={cn(
                     "ml-auto h-4 w-4",
-                    currentFont === framework.value ? "opacity-100" : "opacity-0"
+                    currentFont === fonts.value ? "opacity-100" : "opacity-0"
                   )}
                 />
               </CommandItem>
