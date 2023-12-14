@@ -66,11 +66,11 @@ const Logging = ({element}:{element:Log}) => {
         <h3> {element.type}</h3>
         {element.text && <span> {element?.text}</span>}
         <div className="ml-5">
-            {element.children?.map((subelement:Log) => (
+            {element.children?.map((subelement:Log, k) => (
                 (typeof subelement.children === "string") ? 
-                <p> {subelement.children}</p>
+                <p key={k}> {subelement.children}</p>
                 : (
-                    <Logging element={subelement as Log}/>
+                    <Logging key={k} element={subelement as Log}/>
                 )
                 ))
             }
