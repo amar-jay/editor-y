@@ -16,12 +16,12 @@ import { EditorState, useStore } from '@/lib/store';
 
 const fonts = [
   {
-    value: "Sans Serif",
-    label: "sans-serif",
+    label: "Sans Serif",
+    value: "sans-serif",
   },
   {
-    value: "Serif",
-    label: "serif",
+    label: "Serif",
+    value: "serif",
   },
   {
     value: "monospace",
@@ -40,7 +40,7 @@ export default function Component({toggleSettings}: {toggleSettings:(opened: boo
     toggleSettings(false)
   }
   return (
-    <Card className="absolute flex flex-col h-[80%] mx-auto bg-white shadow-lg rounded-lg overflow-hidden px-5 py-5">
+    <Card className="absolute flex flex-col h-[80%] mx-auto bg-white shadow-lg rounded-lg overflow-hidden px-5 py-5 my-auto">
       <CardHeader className="flex justify-between items-center p-6">
         <CardTitle className="text-3xl font-bold">Settings</CardTitle>
       </CardHeader>

@@ -120,7 +120,7 @@ export const useStore = create<EditorState>()(persist((set) => ({
     session: null,
     DND: false,
     fontSize: 16,
-    fontFamily: 'sans-serif',
+    fontFamily: 'monospace',
     fontTextAlign: 'center',
 //    settheme: (theme) => set({ theme: theme!=="dark" ? 'dark': 'light' }),
     settheme: (theme) => set({ theme }),
