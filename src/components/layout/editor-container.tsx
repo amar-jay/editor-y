@@ -2,7 +2,7 @@
  * v0 by Vercel.
  * @see https://v0.dev/t/RbgCxqBqDhy
  */
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/plate-ui/button"
 import React,{useState} from "react"
 
 interface EditorProps {
