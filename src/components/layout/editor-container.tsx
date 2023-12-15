@@ -7,9 +7,10 @@ import React,{useState} from "react"
 
 interface EditorProps {
     logs: boolean
-    children: React.ReactNode
+    children: React.ReactNode,
+    toggleSettings: () => void
 }
-export default function Component({children, logs=true}: EditorProps) {
+export default function Component({children, logs=true, toggleSettings}: EditorProps) {
     const Logs = JSON.parse(`
     [
     {"type":"p","children":[{"text":"Hey big bro."}]},
@@ -17,8 +18,6 @@ export default function Component({children, logs=true}: EditorProps) {
     {"type":"p","children":[{"text":"vim","underline":true}]},
     {"type":"p","children":[{"text":""}]}]
     `)
-  const [showSettings, setShowSettings] = useState(false);
-  const toggleSettings = () => setShowSettings(!showSettings);
   return (
       <div className="w-full max-w-4xl">
         <div className="flex flex-col relative min-h-screen px-6 py-5">

@@ -6,9 +6,10 @@ import React from "react"
 
 export default function Home() {
   const [openSettings, setOpenSettings] = React.useState(false)
+  const toggleSettings = () => setOpenSettings(!openSettings);
   return (
     <main className="flex flex-col items-center bg-gray-100">
-    <EditorContainer logs={true}>
+    <EditorContainer logs={true} toggleSettings={toggleSettings} >
       <Editor/>
     </EditorContainer>
     {
@@ -18,4 +19,5 @@ export default function Home() {
       }
     </main>
   )
+
 }

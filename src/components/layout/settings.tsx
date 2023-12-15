@@ -4,12 +4,12 @@
  * @see https://v0.dev/t/h4DsoLoxN33
  */
 import React from "react"
-import { CardTitle, CardHeader, CardContent, CardFooter, Card } from "@/components/ui/card"
+import { CardTitle, CardHeader, CardContent, CardFooter, Card } from "@/components/plate-ui/card"
 import { ChatBubbleIcon, CursorArrowIcon, MoonIcon, SunIcon} from "@radix-ui/react-icons"
-import { Button } from "@/components/ui/button"
-import { Label } from "@/components/ui/label"
-import { Slider } from "@/components/ui/slider"
-import { Toggle } from "@/components/ui/toggle"
+import { Button } from "@/components/plate-ui/button"
+import { Label } from "@/components/plate-ui/label"
+import { Slider } from "@/components/plate-ui/slider"
+import { Toggle } from "@/components/plate-ui/toggle"
 import {Combobox} from "@/components/atoms/combobox"
 import { useStore } from '@/lib/store';
  import { shallow } from 'zustand/shallow';
