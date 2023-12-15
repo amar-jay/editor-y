@@ -11,13 +11,17 @@ interface EditorProps {
     toggleSettings: () => void
 }
 export default function Component({children, logs=true, toggleSettings}: EditorProps) {
-    const Logs = JSON.parse(`
+    const ParsedLogs = JSON.parse(`
     [
     {"type":"p","children":[{"text":"Hey big bro."}]},
     {"type":"h3","children":[{"text":"where to?"}]},
     {"type":"p","children":[{"text":"vim","underline":true}]},
     {"type":"p","children":[{"text":""}]}]
     `)
+    const Logs = {
+      type: "body",
+      children: [ParsedLogs] 
+      }
   return (
       <div className="w-full max-w-4xl">
         <div className="flex flex-col relative min-h-screen px-6 py-5">
@@ -49,24 +53,7 @@ export default function Component({children, logs=true, toggleSettings}: EditorP
               <div className="text-gray-600 break-words text-sm">
 
               <h3> {Logs.type}</h3>
-                {Logs.text && <span> {Logs?.text}</span>}
-                <div className="ml-5">
-                    {Logs.children?.map((subelement:Log, k:number) => (
-                        (typeof subelement.children === "object") ? (
-                            <>
-                          <h3 key={k}> {subelement.type}</h3>
-                            {subelement.text && <span> {subelement?.text}</span>}
-                            </>
-                        ): (
-                          <p key={k}> {subelement.children}</p>
-                        )
-                        ))}
-                        </div>
-
-              {/*
-                <Logging element={{type:"body", children:Logs} as Log}/>
-              */}
-
+                <Logging element={Logs}/>
               </div>
             </div>
             </>
@@ -77,25 +64,24 @@ export default function Component({children, logs=true, toggleSettings}: EditorP
   )
 }
 
-interface Log { type: string; text:string; children: Log[]}
+interface Log { type: string; text?:string; underline?: boolean;  bold?: boolean; italic?: boolean; children?: Log[]}
 
-/**
 const Logging = ({element}:{element:Log}) => {
     return (
     <>
-        <h3> {element.type}</h3>
-        {element.text && <span> {element?.text}</span>}
+        <h3> {element?.type}</h3>
         <div className="ml-5">
-            {element.children?.map((subelement:Log, k) => (
-                (typeof subelement.children === "object") ? 
+            {element?.children?.map((subelement:Log, k) => (
                     <Logging key={k} element={subelement as Log}/>
-                : (
-                <p key={k}> {subelement.children}</p>
-                )
-                ))
-            }
+                    )) ?? (
+                <p> 
+                  {element?.text} {' '}
+                  {element.bold && "B"}
+                  {element.italic && "I"}
+                  {element.underline && "U"}
+                  </p>
+                )}
         </div>
         </>
     )
     }
-    */
