@@ -14,7 +14,7 @@ export default function Home() {
     </EditorContainer>
     {
       openSettings && (
-      <Settings setOpenSettings={setOpenSettings}/>
+      <Settings toggleSettings={toggleSettings}/>
       )
       }
     </main>
