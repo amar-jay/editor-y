@@ -47,9 +47,26 @@ export default function Component({children, logs=true, toggleSettings}: EditorP
             <div className="w-1/4 bg-gray-200 p-4 rounded-lg shadow-lg ml-6 min-h-full">
               <h2 className="text-2xl font-bold mb-4">Logs</h2>
               <div className="text-gray-600 break-words text-sm">
+
+              <h3> {Logs.type}</h3>
+                {Logs.text && <span> {Logs?.text}</span>}
+                <div className="ml-5">
+                    {Logs.children?.map((subelement:Log, k:number) => (
+                        (typeof subelement.children === "object") ? (
+                            <>
+                          <h3 key={k}> {subelement.type}</h3>
+                            {subelement.text && <span> {subelement?.text}</span>}
+                            </>
+                        ): (
+                          <p key={k}> {subelement.children}</p>
+                        )
+                        ))}
+                        </div>
+
               {/*
                 <Logging element={{type:"body", children:Logs} as Log}/>
               */}
+
               </div>
             </div>
             </>
@@ -61,6 +78,8 @@ export default function Component({children, logs=true, toggleSettings}: EditorP
 }
 
 interface Log { type: string; text:string; children: Log[]}
+
+/**
 const Logging = ({element}:{element:Log}) => {
     return (
     <>
@@ -79,3 +98,4 @@ const Logging = ({element}:{element:Log}) => {
         </>
     )
     }
+    */

@@ -1,6 +1,6 @@
 "use client"
 //import Editor from "@/components/atoms/editor"
-//import EditorContainer from "@/components/layout/editor-container"
+import EditorContainer from "@/components/layout/editor-container"
 import Settings from "@/components/layout/settings"
 import React from "react"
 
@@ -14,11 +14,9 @@ export default function Home() {
       <Settings toggleSettings={toggleSettings}/>
       )
       }
-    {/**
     <EditorContainer logs={true} toggleSettings={toggleSettings} >
-      <Editor/>
+    hey
     </EditorContainer>
-    */}
     </main>
   )
 
