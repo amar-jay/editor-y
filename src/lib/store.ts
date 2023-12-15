@@ -4,7 +4,7 @@
 
 import { create } from 'zustand';
 import { devtools, persist } from 'zustand/middleware';
-import { Value } from '@udecode/plate';
+import { Value } from '@udecode/plate-common';
 
 /*
  * # States to create
