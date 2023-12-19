@@ -12,7 +12,7 @@ import { FloatingToolbar } from '@/components/plate-ui/floating-toolbar';
 import { FloatingToolbarButtons } from '@/components/plate-ui/floating-toolbar-buttons';
 import { CommentsPopover } from '@/components/plate-ui/comments-popover';
 import { Plate, } from '@udecode/plate-common';
-import {plugins} from '@/lib/editor/plugins';
+import {useEditorPlugins} from '@/lib/editor/plugins';
 import { cn } from "@/lib/utils";
 
 const initialValue = [
@@ -32,12 +32,15 @@ export default function EditorComponent() {
 
   const [bubble, toolbar, comments, fontFamily, fontTextAlign] = useStore(state => [state.bubble, state.toolbar, state.comments, state.fontFamily, state.fontTextAlign]);
   const setFont = (x: string) => 'font-' + x; 
+const plugins = useEditorPlugins()
   
   return (
     <DndProvider backend={HTML5Backend} >
       <TooltipProvider>
       <CommentsProvider users={{}} myUserId="1">
-        <Plate plugins={plugins} initialValue={initialValue}>
+        <Plate plugins={plugins} initialValue={initialValue}
+	onChange={(text)=>setTextValue(text)}
+>
           {
             toolbar && (
           <FixedToolbar>
