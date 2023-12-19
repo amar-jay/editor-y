@@ -3,7 +3,7 @@
  * v0 by Vercel.
  * @see https://v0.dev/t/h4DsoLoxN33
  */
-import React from "react"
+import React, {useState} from "react"
 import { CardTitle, CardHeader, CardContent, CardFooter, Card } from "@/components/ui/card"
 import { ChatBubbleIcon, CursorArrowIcon, MoonIcon, SunIcon} from "@radix-ui/react-icons"
 import { Button } from "@/components/plate-ui/button"
@@ -12,39 +12,41 @@ import { Slider } from "@/components/ui/slider"
 import { Toggle } from "@/components/plate-ui/toggle"
 import {Combobox} from "@/components/atoms/combobox"
 import { EditorState, useStore } from '@/lib/store';
+import {cn } from "@/lib/utils"
  import { shallow } from 'zustand/shallow';
 
 const fonts = [
   {
-    value: "Sans Serif",
-    label: "sans-serif",
+    label: "Sans Serif",
+    value: "sans-serif",
   },
   {
-    value: "Serif",
-    label: "serif",
+    label: "Serif",
+    value: "serif",
   },
   {
     value: "monospace",
-    label: "monospace",
+    label: "Monospace",
   },
   // more will be added later
 ]
 export default function Component({toggleSettings}: {toggleSettings:(opened: boolean)=>void}) {
-  const [fontFamily, fontSize, theme,
-  setfontFamily, setfontSize, settheme] = useStore((state:EditorState) => [
-  state.fontFamily, state.fontSize, state.theme,
-  state.setfontFamily, state.setfontSize, state.settheme], shallow)
+  const [fontFamily, fontSize, theme, bubble, comments,
+  setfontFamily, setfontSize, settheme, toggleBubble, toggleComments] = useStore((state:EditorState) => [
+  state.fontFamily, state.fontSize, state.theme, state.bubble, state.comments,
+  state.setfontFamily, state.setfontSize, state.settheme, state.togglebubble, state.togglecomments], shallow)
+
+const [align, setAlign] = useState("left")
 
   const saveSettings = () => {
     alert("Settings saved!")
     toggleSettings(false)
   }
   return (
-    <Card className="absolute flex flex-col h-[80%] mx-auto bg-white shadow-lg rounded-lg overflow-hidden px-5 py-5">
+    <Card className="absolute flex flex-col h-[80%] mx-auto bg-white shadow-lg rounded-lg overflow-hidden px-5 py-5 my-auto z-50">
       <CardHeader className="flex justify-between items-center p-6">
         <CardTitle className="text-3xl font-bold">Settings</CardTitle>
       </CardHeader>
-      {fontSize}
       <CardContent className="p-6 space-y-6 flex-1">
         <div className="flex items-center space-x-2">
           <Label htmlFor="font-size">Font Size</Label>
@@ -60,32 +62,42 @@ export default function Component({toggleSettings}: {toggleSettings:(opened: boo
             <MenuIcon className="mr-2 h-4 w-4" />
             Toolbar
           </Toggle>
-          <Toggle aria-label="Toggle theme" className="space-x-2" variant="outline" onPressedChange={e => settheme(e? "dark": "light")}>
+          <Toggle aria-label="Toggle theme" className={
+		cn("space-x-2",
+		theme === "dark" && "bg-black text-white hover:bg-black hover:text-white")} variant="outline" onPressedChange={e => settheme(e? "dark": "light")}>
             {theme === "dark" ? <MoonIcon className="mr-2 h-4 w-4" /> : <SunIcon className="mr-2 h-4 w-4" />}
-            {theme.charAt(0).toUpperCase() + theme.slice(1).toLowerCase()}
             Theme
           </Toggle>
-          <Toggle aria-label="Toggle bubble" className="space-x-2" variant="outline">
-            <ChatBubbleIcon className="mr-2 h-4 w-4" />
+          <Toggle aria-label="Toggle bubble" className={cn(
+		"space-x-2",
+		bubble && "bg-black text-white hover:bg-black hover:text-white")}
+		onPressedChange={() => toggleBubble(!bubble)}
+		variant="outline">
+            <ChatBubbleIcon className="mr-2 h-4 w-4"  />
             Bubble
           </Toggle>
 
-          <Toggle aria-label="Toggle bubble" className="space-x-2" variant="outline">
+          <Toggle aria-label="Toggle comments" className={cn(
+		"space-x-2",
+	//	comments && "bg-black text-white hover:bg-black hover:text-white"
+)}
+		onPressedChange={() => toggleComments &&toggleComments(!comments)}
+		variant={!comments && "outline"}>
             <CursorArrowIcon className="mr-2 h-4 w-4" />
-            DND 
+            Comments 
           </Toggle>
         </div>
         <div className="flex items-center justify-around space-x-2">
-          <Button aria-label="Align left" variant="outline">
+          <Button aria-label="Align left" variant={align!="left" ? "outline": "default"}  onClick={() => setAlign("left")}>
             <AlignLeftIcon className="w-4 h-4" />
           </Button>
-          <Button aria-label="Align center" variant="outline">
+          <Button aria-label="Align center" variant={align!="center" ? "outline": "default"}  onClick={() => setAlign("center")}>
             <AlignCenterIcon className="w-4 h-4" />
           </Button>
-          <Button aria-label="Align right" variant="outline">
+          <Button aria-label="Align right" variant={align!="right" ? "outline": "default"}  onClick={() => setAlign("right")}>
             <AlignRightIcon className="w-4 h-4" />
           </Button>
-          <Button aria-label="Justify text" variant="outline">
+          <Button aria-label="Justify text" variant={align!="justify" ? "outline": "default"} onClick={() => setAlign("justify")}>
             <AlignJustifyIcon className="w-4 h-4" />
           </Button>
         </div>

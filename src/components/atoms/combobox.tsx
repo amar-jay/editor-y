@@ -58,7 +58,7 @@ export function Combobox({fonts, setFont, currentFont}:{fonts: Item[]; setFont: 
                 <CheckIcon
                   className={cn(
                     "ml-auto h-4 w-4",
-                    currentFont === fonts.value ? "opacity-100" : "opacity-0"
+                    currentFont === font.value ? "opacity-100" : "opacity-0"
                   )}
                 />
               </CommandItem>

@@ -181,6 +181,8 @@ export const Icons = {
   color: Baseline,
   column: RectangleVertical,
   comment: MessageSquare,
+  combine: MessageSquare, //TODO: change to teh right one
+  ungroup: MessageSquare, //TODO: change to teh right one
   commentAdd: MessageSquarePlus,
   delete: Trash,
   dragHandle: GripVertical,
