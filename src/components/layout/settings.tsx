@@ -3,7 +3,7 @@
  * v0 by Vercel.
  * @see https://v0.dev/t/h4DsoLoxN33
  */
-import React from "react"
+import React, {useState} from "react"
 import { CardTitle, CardHeader, CardContent, CardFooter, Card } from "@/components/ui/card"
 import { ChatBubbleIcon, CursorArrowIcon, MoonIcon, SunIcon} from "@radix-ui/react-icons"
 import { Button } from "@/components/plate-ui/button"
@@ -36,6 +36,8 @@ export default function Component({toggleSettings}: {toggleSettings:(opened: boo
   state.fontFamily, state.fontSize, state.theme, state.bubble, state.comments,
   state.setfontFamily, state.setfontSize, state.settheme, state.togglebubble, state.togglecomments], shallow)
 
+const [align, setAlign] = useState("left")
+
   const saveSettings = () => {
     alert("Settings saved!")
     toggleSettings(false)
@@ -45,7 +47,6 @@ export default function Component({toggleSettings}: {toggleSettings:(opened: boo
       <CardHeader className="flex justify-between items-center p-6">
         <CardTitle className="text-3xl font-bold">Settings</CardTitle>
       </CardHeader>
-      {fontSize}
       <CardContent className="p-6 space-y-6 flex-1">
         <div className="flex items-center space-x-2">
           <Label htmlFor="font-size">Font Size</Label>
@@ -78,24 +79,25 @@ export default function Component({toggleSettings}: {toggleSettings:(opened: boo
 
           <Toggle aria-label="Toggle comments" className={cn(
 		"space-x-2",
-		comments && "bg-black text-white hover:bg-black hover:text-white")}
+	//	comments && "bg-black text-white hover:bg-black hover:text-white"
+)}
 		onPressedChange={() => toggleComments &&toggleComments(!comments)}
-		variant="outline">
+		variant={!comments && "outline"}>
             <CursorArrowIcon className="mr-2 h-4 w-4" />
             Comments 
           </Toggle>
         </div>
         <div className="flex items-center justify-around space-x-2">
-          <Button aria-label="Align left" variant="outline">
+          <Button aria-label="Align left" variant={align=="left" ? "outline": "default"}  onClick={() => setAlign("left")}>
             <AlignLeftIcon className="w-4 h-4" />
           </Button>
-          <Button aria-label="Align center" variant="outline">
+          <Button aria-label="Align center" variant={align=="center" ? "outline": "default"}  onClick={() => setAlign("center")}>
             <AlignCenterIcon className="w-4 h-4" />
           </Button>
-          <Button aria-label="Align right" variant="outline">
+          <Button aria-label="Align right" variant={align=="right" ? "outline": "default"}  onClick={() => setAlign("right")}>
             <AlignRightIcon className="w-4 h-4" />
           </Button>
-          <Button aria-label="Justify text" variant="outline">
+          <Button aria-label="Justify text" variant={align=="justify" ? "outline": "default"} onClick={() => setAlign("justify")}>
             <AlignJustifyIcon className="w-4 h-4" />
           </Button>
         </div>
