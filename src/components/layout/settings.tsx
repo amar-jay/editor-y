@@ -12,6 +12,7 @@ import { Slider } from "@/components/ui/slider"
 import { Toggle } from "@/components/plate-ui/toggle"
 import {Combobox} from "@/components/atoms/combobox"
 import { EditorState, useStore } from '@/lib/store';
+import {cn } from "@/lib/utils"
  import { shallow } from 'zustand/shallow';
 
 const fonts = [
@@ -25,15 +26,15 @@ const fonts = [
   },
   {
     value: "monospace",
-    label: "monospace",
+    label: "Monospace",
   },
   // more will be added later
 ]
 export default function Component({toggleSettings}: {toggleSettings:(opened: boolean)=>void}) {
-  const [fontFamily, fontSize, theme,
-  setfontFamily, setfontSize, settheme] = useStore((state:EditorState) => [
-  state.fontFamily, state.fontSize, state.theme,
-  state.setfontFamily, state.setfontSize, state.settheme], shallow)
+  const [fontFamily, fontSize, theme, bubble, comments,
+  setfontFamily, setfontSize, settheme, toggleBubble, toggleComments] = useStore((state:EditorState) => [
+  state.fontFamily, state.fontSize, state.theme, state.bubble, state.comments,
+  state.setfontFamily, state.setfontSize, state.settheme, state.togglebubble, state.togglecomments], shallow)
 
   const saveSettings = () => {
     alert("Settings saved!")
@@ -60,19 +61,28 @@ export default function Component({toggleSettings}: {toggleSettings:(opened: boo
             <MenuIcon className="mr-2 h-4 w-4" />
             Toolbar
           </Toggle>
-          <Toggle aria-label="Toggle theme" className="space-x-2" variant="outline" onPressedChange={e => settheme(e? "dark": "light")}>
+          <Toggle aria-label="Toggle theme" className={
+		cn("space-x-2",
+		theme === "dark" && "bg-black text-white hover:bg-black hover:text-white")} variant="outline" onPressedChange={e => settheme(e? "dark": "light")}>
             {theme === "dark" ? <MoonIcon className="mr-2 h-4 w-4" /> : <SunIcon className="mr-2 h-4 w-4" />}
-            {theme.charAt(0).toUpperCase() + theme.slice(1).toLowerCase()}
             Theme
           </Toggle>
-          <Toggle aria-label="Toggle bubble" className="space-x-2" variant="outline">
-            <ChatBubbleIcon className="mr-2 h-4 w-4" />
+          <Toggle aria-label="Toggle bubble" className={cn(
+		"space-x-2",
+		bubble && "bg-black text-white hover:bg-black hover:text-white")}
+		onPressedChange={() => toggleBubble(!bubble)}
+		variant="outline">
+            <ChatBubbleIcon className="mr-2 h-4 w-4"  />
             Bubble
           </Toggle>
 
-          <Toggle aria-label="Toggle bubble" className="space-x-2" variant="outline">
+          <Toggle aria-label="Toggle comments" className={cn(
+		"space-x-2",
+		comments && "bg-black text-white hover:bg-black hover:text-white")}
+		onPressedChange={() => toggleComments &&toggleComments(!comments)}
+		variant="outline">
             <CursorArrowIcon className="mr-2 h-4 w-4" />
-            DND 
+            Comments 
           </Toggle>
         </div>
         <div className="flex items-center justify-around space-x-2">
