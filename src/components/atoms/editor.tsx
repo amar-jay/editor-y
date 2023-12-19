@@ -49,7 +49,7 @@ const plugins = useEditorPlugins()
             )
           }
           {/* something must be wrong with the editor here*/}
-          <PlateEditor className={cn(setFont(fontFamily), fontTextAlign)} />
+          <PlateEditor className={cn(setFont(fontFamily), fontTextAlign, "ring-0")} />
           {
 
             !bubble && (
