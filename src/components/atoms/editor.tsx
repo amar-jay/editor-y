@@ -18,8 +18,8 @@ import { cn } from "@/lib/utils";
 const initialValue = [
   {
     id: '1',
-    type: 'p',
-    children: [{ text: 'Hello, World!' }],
+    type: 'h1',
+    children: [{ text: 'Hello!' }],
   },
 ];
 
@@ -42,7 +42,7 @@ const plugins = useEditorPlugins()
 	onChange={(text)=>setTextValue(text)}
 >
           {
-            toolbar && (
+            !toolbar && (
           <FixedToolbar>
             <FixedToolbarButtons />
           </FixedToolbar>
@@ -52,7 +52,7 @@ const plugins = useEditorPlugins()
           <PlateEditor className={cn(setFont(fontFamily), fontTextAlign)} />
           {
 
-            bubble && (
+            !bubble && (
           <FloatingToolbar>
             <FloatingToolbarButtons />
           </FloatingToolbar>
