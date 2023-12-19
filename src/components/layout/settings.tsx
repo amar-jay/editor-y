@@ -41,7 +41,7 @@ export default function Component({toggleSettings}: {toggleSettings:(opened: boo
     toggleSettings(false)
   }
   return (
-    <Card className="absolute flex flex-col h-[80%] mx-auto bg-white shadow-lg rounded-lg overflow-hidden px-5 py-5 my-auto">
+    <Card className="absolute flex flex-col h-[80%] mx-auto bg-white shadow-lg rounded-lg overflow-hidden px-5 py-5 my-auto z-50">
       <CardHeader className="flex justify-between items-center p-6">
         <CardTitle className="text-3xl font-bold">Settings</CardTitle>
       </CardHeader>
