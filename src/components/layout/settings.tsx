@@ -88,16 +88,16 @@ const [align, setAlign] = useState("left")
           </Toggle>
         </div>
         <div className="flex items-center justify-around space-x-2">
-          <Button aria-label="Align left" variant={align=="left" ? "outline": "default"}  onClick={() => setAlign("left")}>
+          <Button aria-label="Align left" variant={align!="left" ? "outline": "default"}  onClick={() => setAlign("left")}>
             <AlignLeftIcon className="w-4 h-4" />
           </Button>
-          <Button aria-label="Align center" variant={align=="center" ? "outline": "default"}  onClick={() => setAlign("center")}>
+          <Button aria-label="Align center" variant={align!="center" ? "outline": "default"}  onClick={() => setAlign("center")}>
             <AlignCenterIcon className="w-4 h-4" />
           </Button>
-          <Button aria-label="Align right" variant={align=="right" ? "outline": "default"}  onClick={() => setAlign("right")}>
+          <Button aria-label="Align right" variant={align!="right" ? "outline": "default"}  onClick={() => setAlign("right")}>
             <AlignRightIcon className="w-4 h-4" />
           </Button>
-          <Button aria-label="Justify text" variant={align=="justify" ? "outline": "default"} onClick={() => setAlign("justify")}>
+          <Button aria-label="Justify text" variant={align!="justify" ? "outline": "default"} onClick={() => setAlign("justify")}>
             <AlignJustifyIcon className="w-4 h-4" />
           </Button>
         </div>
